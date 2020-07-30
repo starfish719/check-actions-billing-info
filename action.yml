@@ -1,6 +1,6 @@
-name: 'Your name here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
+name: 'CheckActionsBillingInfo'
+description: 'check actions billing info'
+author: 'starfish719'
 inputs:
   accessToken:
     required: true
@@ -13,3 +13,6 @@ inputs:
 runs:
   using: 'node12'
   main: 'dist/index.js'
+branding:
+  icon: 'github'
+  color: 'blue'
