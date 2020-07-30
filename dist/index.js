@@ -196,6 +196,7 @@ function run() {
             const { data } = yield octokit.request('GET /users/{username}/settings/billing/actions', {
                 username: core.getInput('username')
             });
+            core.debug(data);
             core.setOutput('data', data);
         }
         catch (error) {
