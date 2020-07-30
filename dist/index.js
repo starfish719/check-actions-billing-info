@@ -193,11 +193,10 @@ function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             const octokit = new core_1.Octokit({ auth: core.getInput('accessToken') });
-            const { data } = yield octokit.request('GET /users/{username}/settings/billing/actions', {
+            const { data } = yield octokit.request('GET /users/:username/settings/billing/actions', {
                 username: core.getInput('username')
             });
-            core.debug(data);
-            core.setOutput('data', data);
+            core.setOutput('included_minutes', data.included_minutes);
         }
         catch (error) {
             core.setFailed(error.message);
