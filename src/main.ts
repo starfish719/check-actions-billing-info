@@ -3,8 +3,8 @@ import {Octokit} from '@octokit/core'
 
 async function run(): Promise<void> {
   try {
-    /**
     const octokit = new Octokit({auth: core.getInput('accessToken')})
+    /**
     const {data} = await octokit.request(
       'GET /users/:username/settings/billing/actions',
       {
@@ -14,7 +14,6 @@ async function run(): Promise<void> {
 
     core.setOutput('included_minutes', data.included_minutes)
      */
-    core.setOutput('included_minutes', 1000)
   } catch (error) {
     core.setFailed(error.message)
   }
