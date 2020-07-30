@@ -192,6 +192,7 @@ const core_1 = __webpack_require__(448);
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
+            core.debug(core.getInput('username'));
             const octokit = new core_1.Octokit({ auth: core.getInput('accessToken') });
             const { data } = yield octokit.request('GET /users/:username/settings/billing/actions', {
                 username: core.getInput('username')
