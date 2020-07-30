@@ -5,15 +5,13 @@ async function run(): Promise<void> {
   try {
     const octokit = new Octokit({auth: core.getInput('accessToken')})
     const {data} = await octokit.request(
-      'GET /users/{username}/settings/billing/actions',
+      'GET /users/:username/settings/billing/actions',
       {
         username: core.getInput('username')
       }
     )
 
-    core.debug(data)
-
-    core.setOutput('data', data)
+    core.setOutput('included_minutes', data.included_minutes)
   } catch (error) {
     core.setFailed(error.message)
   }
