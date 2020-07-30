@@ -11,6 +11,8 @@ async function run(): Promise<void> {
       }
     )
 
+    core.setOutput('total_minutes_used', data.total_minutes_used)
+    core.setOutput('total_paid_minutes_used', data.total_paid_minutes_used)
     core.setOutput('included_minutes', data.included_minutes)
   } catch (error) {
     core.setFailed(error.message)

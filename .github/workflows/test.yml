@@ -15,6 +15,12 @@ jobs:
           npm ci
           npm run all
       - uses: ./
+        id: exec-action
         with:
           accessToken: ${{ secrets.ACCESS_TOKEN }}
           username: starfish719
+      - name: result
+        run: |
+          echo total_minutes_used-${{ steps.exec-action.outputs.total_minutes_used }}
+          echo total_paid_minutes_used-${{ steps.exec-action.outputs.total_paid_minutes_used }}
+          echo included_minutes-${{ steps.exec-action.outputs.included_minutes }}

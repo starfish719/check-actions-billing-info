@@ -196,6 +196,8 @@ function run() {
             const { data } = yield octokit.request('GET /users/:username/settings/billing/actions', {
                 username: core.getInput('username')
             });
+            core.setOutput('total_minutes_used', data.total_minutes_used);
+            core.setOutput('total_paid_minutes_used', data.total_paid_minutes_used);
             core.setOutput('included_minutes', data.included_minutes);
         }
         catch (error) {
