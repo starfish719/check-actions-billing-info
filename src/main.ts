@@ -1,16 +1,19 @@
 import * as core from '@actions/core'
-import {wait} from './wait'
+import {Octokit} from '@octokit/core'
 
 async function run(): Promise<void> {
   try {
-    const ms: string = core.getInput('milliseconds')
-    core.debug(`Waiting ${ms} milliseconds ...`) // debug is only output if you set the secret `ACTIONS_RUNNER_DEBUG` to true
+    const octokit = new Octokit({auth: core.getInput('accessToken')})
+    const {data} = await octokit.request(
+      'GET /users/:username/settings/billing/actions',
+      {
+        username: core.getInput('username')
+      }
+    )
 
-    core.debug(new Date().toTimeString())
-    await wait(parseInt(ms, 10))
-    core.debug(new Date().toTimeString())
-
-    core.setOutput('time', new Date().toTimeString())
+    core.setOutput('total_minutes_used', data.total_minutes_used)
+    core.setOutput('total_paid_minutes_used', data.total_paid_minutes_used)
+    core.setOutput('included_minutes', data.included_minutes)
   } catch (error) {
     core.setFailed(error.message)
   }

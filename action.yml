@@ -2,10 +2,14 @@ name: 'Your name here'
 description: 'Provide a description here'
 author: 'Your name or organization here'
 inputs:
-  milliseconds: # change this
+  accessToken:
     required: true
-    description: 'input description here'
-    default: 'default value if applicable'
+    description: 'GitHub Access Token'
+    default: ''
+  username:
+    required: true
+    description: 'User Name'
+    default: ''
 runs:
   using: 'node12'
   main: 'dist/index.js'

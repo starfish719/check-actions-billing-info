@@ -7,18 +7,20 @@ on: # rebuild any PRs and main branch changes
       - 'releases/*'
 
 jobs:
-  build: # make sure build/ci work properly
+  test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - run: |
-          npm install
-      - run: |
+          npm ci
           npm run all
-  test: # make sure the action works on a clean machine without building
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
       - uses: ./
+        id: exec-action
         with:
-          milliseconds: 1000
+          accessToken: ${{ secrets.ACCESS_TOKEN }}
+          username: starfish719
+      - name: result
+        run: |
+          echo total_minutes_used-${{ steps.exec-action.outputs.total_minutes_used }}
+          echo total_paid_minutes_used-${{ steps.exec-action.outputs.total_paid_minutes_used }}
+          echo included_minutes-${{ steps.exec-action.outputs.included_minutes }}
