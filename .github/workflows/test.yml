@@ -16,5 +16,5 @@ jobs:
           npm run all
       - uses: ./
         with:
-          accessToken: ${{ secrets.GITHUB_TOKEN }}
+          accessToken: ${{ secrets.ACCESS_TOKEN }}
           username: starfish719
