@@ -11,6 +11,8 @@ async function run(): Promise<void> {
       }
     )
 
+    core.debug(data)
+
     core.setOutput('data', data)
   } catch (error) {
     core.setFailed(error.message)
