@@ -18,7 +18,8 @@ default is `user`
 
 https://github.com/settings/tokens
 
-Access tokens must have the user scope.
+When accessType is `user`, Access tokens must have the user scope.
+When accessType is `org`, Access tokens must have the read:org scope.
 
 ### `name`
 
