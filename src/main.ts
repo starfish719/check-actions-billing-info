@@ -4,12 +4,20 @@ import {Octokit} from '@octokit/core'
 async function run(): Promise<void> {
   try {
     const octokit = new Octokit({auth: core.getInput('accessToken')})
-    const {data} = await octokit.request(
-      'GET /users/:username/settings/billing/actions',
-      {
-        username: core.getInput('username')
+
+    let path = 'GET /users/:username/settings/billing/actions'
+    let params: {[s: string]: string} = {
+      username: core.getInput('name')
+    }
+
+    const accessType = core.getInput('accessType')
+    if (accessType === 'org') {
+      path = 'GET /orgs/:org/settings/billing/actions'
+      params = {
+        org: core.getInput('name')
       }
-    )
+    }
+    const {data} = await octokit.request(path, params)
 
     core.setOutput('total_minutes_used', data.total_minutes_used)
     core.setOutput('total_paid_minutes_used', data.total_paid_minutes_used)

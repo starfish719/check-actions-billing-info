@@ -193,9 +193,18 @@ function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             const octokit = new core_1.Octokit({ auth: core.getInput('accessToken') });
-            const { data } = yield octokit.request('GET /users/:username/settings/billing/actions', {
-                username: core.getInput('username')
-            });
+            let path = 'GET /users/:username/settings/billing/actions';
+            let params = {
+                username: core.getInput('name')
+            };
+            const accessType = core.getInput('accessType');
+            if (accessType === 'org') {
+                path = 'GET /orgs/:org/settings/billing/actions';
+                params = {
+                    org: core.getInput('name')
+                };
+            }
+            const { data } = yield octokit.request(path, params);
             core.setOutput('total_minutes_used', data.total_minutes_used);
             core.setOutput('total_paid_minutes_used', data.total_paid_minutes_used);
             core.setOutput('included_minutes', data.included_minutes);

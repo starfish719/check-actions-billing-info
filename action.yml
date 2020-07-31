@@ -2,13 +2,17 @@ name: 'CheckActionsBillingInfo'
 description: 'check actions billing info'
 author: 'starfish719'
 inputs:
+  accessType:
+    required: false
+    description: 'user or org'
+    default: 'user'
   accessToken:
     required: true
     description: 'GitHub Access Token'
     default: ''
-  username:
+  name:
     required: true
-    description: 'User Name'
+    description: 'user_name or org_name'
     default: ''
 runs:
   using: 'node12'
