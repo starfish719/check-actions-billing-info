@@ -15,12 +15,23 @@ jobs:
           npm ci
           npm run all
       - uses: ./
-        id: exec-action
+        id: exec-user-action
         with:
           accessToken: ${{ secrets.ACCESS_TOKEN }}
-          username: starfish719
+          name: starfish719
       - name: result
         run: |
-          echo total_minutes_used-${{ steps.exec-action.outputs.total_minutes_used }}
-          echo total_paid_minutes_used-${{ steps.exec-action.outputs.total_paid_minutes_used }}
-          echo included_minutes-${{ steps.exec-action.outputs.included_minutes }}
+          echo total_minutes_used-${{ steps.exec-user-action.outputs.total_minutes_used }}
+          echo total_paid_minutes_used-${{ steps.exec-user-action.outputs.total_paid_minutes_used }}
+          echo included_minutes-${{ steps.exec-user-action.outputs.included_minutes }}
+      - uses: ./
+        id: exec-org-action
+        with:
+          accessType: org
+          accessToken: ${{ secrets.ORG_ACCESS_TOKEN }}
+          name: StarfishTestOrganization
+      - name: result
+        run: |
+          echo total_minutes_used-${{ steps.exec-org-action.outputs.total_minutes_used }}
+          echo total_paid_minutes_used-${{ steps.exec-org-action.outputs.total_paid_minutes_used }}
+          echo included_minutes-${{ steps.exec-org-action.outputs.included_minutes }}
