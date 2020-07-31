@@ -19,7 +19,9 @@ default is `user`
 https://github.com/settings/tokens
 
 When accessType is `user`, Access tokens must have the user scope.
-When accessType is `org`, Access tokens must have the read:org scope.
+When accessType is `org`, Access tokens must have the org scope.
+
+Warning: The Billing API is currently in public beta and subject to change.
 
 ### `name`
 
