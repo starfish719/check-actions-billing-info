@@ -35,7 +35,7 @@ jobs:
     steps:
     - name: Check Actions Billing Info
       id: exec-actions
-      uses: starfish719/check-actions-billing-info@v1.0.0
+      uses: starfish719/check-actions-billing-info@v.0.0
       with:
         accessToken: ${{ secrets.ACCESS_TOKEN }}
         name: your name
