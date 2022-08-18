@@ -26,7 +26,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@actions/core": "^1.2.6",
+    "@actions/core": "^1.9.1",
     "@octokit/core": "^3.2.5"
   },
   "devDependencies": {
